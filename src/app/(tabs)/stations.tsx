@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Text, View, HStack, Switch, useColorMode, Button } from 'native-base'
+import { Text, View, HStack, Switch, useColorMode } from 'native-base'
 
 const TabStationsScreen = () => (
   <View style={styles.container}>
@@ -21,10 +21,8 @@ function ToggleDarkMode() {
         aria-label={colorMode === 'light' ? 'switch to dark mode' : 'switch to light mode'}
       />
       <Text>Light</Text>
-<Button>
-  sdasad
-</Button>
-      <Text style={{color:'red'}}>{colorMode}</Text>
+
+      <Text style={{ color: 'red' }}>{colorMode}</Text>
     </HStack>
   )
 }
@@ -33,7 +31,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center', 
+    justifyContent: 'center',
   },
   title: {
     fontSize: 20,

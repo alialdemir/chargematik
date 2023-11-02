@@ -14,13 +14,13 @@ const LATITUDE_DELTA = 0.0122
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 type MapViewProps = {
-  onStationDetailActionModal: any
+  setSelectedCoordinate: any
 }
-const MapView = ({ onStationDetailActionModal }: MapViewProps) => {
+const MapView = ({ setSelectedCoordinate }: MapViewProps) => {
   const handleMarkerPress = (event: any) => {
     const { latitude, longitude } = event.nativeEvent.coordinate
-    // alert(`latitude: ${latitude} longitude: ${longitude}`)
-    onStationDetailActionModal({latitude, longitude})
+
+    setSelectedCoordinate({ latitude, longitude })
   }
 
   return (

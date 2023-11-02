@@ -1,6 +1,5 @@
-import { useContext } from 'react'
+import { Linking } from 'react-native'
 
-import { AppContext } from '../../contexts/AppContext'
 import CcActionsheet from '../../components/Actionsheet'
 import AppleMapIcon from '../../assets/icons/AppleMapsIcon'
 import GoogleMapIcon from '../../assets/icons/GoogleMapIcon'
@@ -8,6 +7,7 @@ import GoogleMapIcon from '../../assets/icons/GoogleMapIcon'
 type NavigationActionModalProps = {
   isOpen: boolean
   onClose: any
+  coordinate: CoordinateType
 }
 
 export type CoordinateType = {
@@ -15,22 +15,18 @@ export type CoordinateType = {
   longitude: number
 }
 
-const NavigationActionModal = ({ isOpen, onClose }: NavigationActionModalProps) => {
-  const { coordinate, setCoordinate } = useContext(AppContext)
-
+const NavigationActionModal = ({ isOpen, onClose, coordinate }: NavigationActionModalProps) => {
   const maps = [
     {
       icon: <AppleMapIcon />,
       text: 'Apple Maps',
       onPress: () => {
-        alert(JSON.stringify(coordinate))
-        // alert(JSON.stringify(coordinate))
-        // alert(JSON.stringify(coordinate1))
-        // if (coordinate && coordinate.latitude && coordinate.longitude) {
-        //   const url = `maps://maps.apple.com/?q=${coordinate?.latitude},${coordinate?.longitude}`
-        //   Linking.openURL(url)
-        // }
-        // onClose()
+        if (coordinate && coordinate.latitude && coordinate.longitude) {
+          const url = `maps://maps.apple.com/?q=${coordinate?.latitude},${coordinate?.longitude}`
+
+          Linking.openURL(url)
+        }
+        onClose()
       },
     },
     {
