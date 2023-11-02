@@ -1,8 +1,11 @@
 import { View, Text, StyleSheet } from 'react-native'
 
+import { ToggleDarkMode } from '../../sections/ToggleDarkMode'
+
 const TabTransactionsScreen = () => (
   <View style={styles.container}>
     <Text style={styles.title}>transactions</Text>
+    <ToggleDarkMode />
   </View>
 )
 

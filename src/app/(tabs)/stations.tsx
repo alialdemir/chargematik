@@ -1,47 +1,17 @@
-import { StyleSheet } from 'react-native'
-import { Text, View, HStack, Switch, useColorMode } from 'native-base'
+import { View, ScrollView } from 'native-base'
+
+import SearchInput from '../../components/SearchInput'
+import StationCard from '../../components/StationCard'
 
 const TabStationsScreen = () => (
-  <View style={styles.container}>
-    <Text style={styles.title}>station</Text>
-
-    <ToggleDarkMode />
+  <View padding="16px">
+    <SearchInput />
+    <ScrollView>
+      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11].map(() => (
+        <StationCard />
+      ))}
+    </ScrollView>
   </View>
 )
-
-// Color Switch Component
-function ToggleDarkMode() {
-  const { colorMode, toggleColorMode } = useColorMode()
-  return (
-    <HStack space={2} alignItems="center">
-      <Text>Dark</Text>
-      <Switch
-        isChecked={colorMode === 'light'}
-        onToggle={toggleColorMode}
-        aria-label={colorMode === 'light' ? 'switch to dark mode' : 'switch to light mode'}
-      />
-      <Text>Light</Text>
-
-      <Text style={{ color: 'red' }}>{colorMode}</Text>
-    </HStack>
-  )
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-})
 
 export default TabStationsScreen

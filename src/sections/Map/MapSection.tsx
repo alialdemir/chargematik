@@ -30,7 +30,7 @@ const MapSection = () => {
 
   return (
     <View flex={1} alignItems="center" justifyContent="center">
-      <View position="absolute" top={50} backgroundColor="transparent" zIndex={9999}>
+      <View position="absolute" top={50} backgroundColor="transparent" zIndex={9999} width={262}>
         <SearchInput />
       </View>
 

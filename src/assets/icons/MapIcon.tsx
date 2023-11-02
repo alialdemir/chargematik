@@ -2,7 +2,7 @@ import { View } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
 
 type MapIconProps = {
-  size: number
+  size?: number
   color?: string
 }
 

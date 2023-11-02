@@ -1,8 +1,9 @@
 import { Tabs } from 'expo-router'
-import { useColorModeValue } from 'native-base'
+import { Box, useColorModeValue } from 'native-base'
 
 import MapIcon from '../../assets/icons/MapIcon'
 import WalletIcon from '../../assets/icons/WalletIcon'
+import FilterIcon from '../../assets/icons/FilterIcon'
 import Colors, { colors } from '../../constants/Colors'
 import StationsIcon from '../../assets/icons/StationsIcon'
 import TransactionsIcon from '../../assets/icons/TransactionsIcon'
@@ -42,6 +43,11 @@ export default function TabLayout() {
         tabBarActiveTintColor: colors.secondary,
         tabBarInactiveTintColor: colors.textColor,
         tabBarInactiveBackgroundColor: tabBackgroundColor,
+        headerTintColor: colors.write,
+
+        headerStyle: {
+          backgroundColor: tabBackgroundColor,
+        },
         tabBarStyle: {
           backgroundColor: tabBackgroundColor,
         },
@@ -52,6 +58,12 @@ export default function TabLayout() {
           key={tab.name}
           name={tab.name}
           options={{
+            headerRight: () => (
+              <Box mr={6}>
+                <FilterIcon />
+              </Box>
+            ),
+
             headerShown: tab.headerShown ?? true,
             title: tab.title,
             tabBarLabelStyle: {

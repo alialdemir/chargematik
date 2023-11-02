@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Input, Stack } from 'native-base'
 import { TouchableOpacity } from 'react-native'
 
+import { colors } from '../../constants/Colors'
 import SearchIcon from '../../assets/icons/SearchIcon'
 
 const SearchInput = () => {
@@ -11,17 +12,18 @@ const SearchInput = () => {
   }
 
   return (
-    <Stack borderRadius={10} backgroundColor="#fff" space={4} w="100%" alignItems="center">
+    <Stack borderRadius={10} backgroundColor={colors.write} space={4} w="100%" alignItems="center">
       <Input
-        width={262}
+        width="full"
         borderWidth={0}
         height="32px"
+        style={{ color: colors.black }}
         value={searchText}
         onChangeText={(text) => setSearchText(text)}
         onSubmitEditing={handleSearch}
         InputRightElement={
           <Stack
-            backgroundColor="#0CE8A6"
+            backgroundColor={colors.cyan}
             width={16}
             height="32px"
             justifyContent="center"
