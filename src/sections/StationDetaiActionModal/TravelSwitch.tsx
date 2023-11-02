@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
-import { View, Text, Animated, StyleSheet, PanResponder } from 'react-native'
+import { View, Text, useColorModeValue } from 'native-base'
+import { Animated, StyleSheet, PanResponder } from 'react-native'
 
-import { useThemeColor } from '../../components/Themed'
+import { colors } from '../../constants/Colors'
 import SwitchRightIcon from '../../assets/icons/SwitchRightIcon'
 
 const TravelSwitch = ({ onSwitch }: any) => {
-  const colors = useThemeColor()
-
   const [isSwitchOn, setIsSwitchOn] = useState(false)
   const switchPosition = new Animated.Value(-50)
 
@@ -32,7 +31,11 @@ const TravelSwitch = ({ onSwitch }: any) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={isSwitchOn ? ['#0CE8A6', '#0CE8A6'] : ['#FFFFFF', '#FFFFFF']}
+        colors={useColorModeValue(
+          isSwitchOn ? ['#0CE8A6', '#0CE8A6'] : ['#FFFFFF', '#FFFFFF'],
+
+          isSwitchOn ? ['#0CE8A6', '#0CE8A6'] : ['#2D2D2D', '#2D2D2D']
+        )}
         style={{
           marginTop: -80,
           height: 55,
@@ -45,7 +48,7 @@ const TravelSwitch = ({ onSwitch }: any) => {
           <View
             style={{
               ...styles.box,
-              backgroundColor: colors.stationDetailSwitchButton,
+              backgroundColor: colors.primary,
             }}
           >
             <SwitchRightIcon />
@@ -54,7 +57,7 @@ const TravelSwitch = ({ onSwitch }: any) => {
         {!isSwitchOn ? (
           <Text
             style={{
-              color: colors.stationDetailTitle,
+              color: useColorModeValue(colors.primary, colors.write),
               fontWeight: 'bold',
               fontSize: 14,
               alignSelf: 'center',
@@ -73,6 +76,9 @@ const styles = StyleSheet.create({
     shadowColor: '#000000',
     shadowOpacity: 33,
     shadowOffset: 3,
+    marginTop: 70,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   switch: {
     display: 'flex',

@@ -9,6 +9,7 @@ export const colors = {
   textColor: '#C4C4C4',
   write: '#ffffff',
   gray40: '#666666',
+  black: '#000',
 }
 
 export default {

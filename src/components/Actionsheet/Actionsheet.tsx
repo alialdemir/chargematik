@@ -1,12 +1,15 @@
 import { Box, Text, View, Button, Actionsheet } from 'native-base'
 
+import { colors } from '../../constants/Colors'
 import BackArrowIcon from '../../assets/icons/BackArrowIcon'
 
-type CcActionsheetProps = {
+type ActionsheetProps = {
   isShow: boolean
   onClose: any
-  items: ActionSheetItem[]
+  items?: ActionSheetItem[]
   title?: string
+  icon?: any
+  children?: any
 }
 
 type ActionSheetItem = {
@@ -15,21 +18,18 @@ type ActionSheetItem = {
   onPress: any
 }
 
-const CcActionsheet = ({ isShow, onClose, items, title }: CcActionsheetProps) => (
-  <Actionsheet
-    isOpen={isShow}
-    onClose={onClose}
-    size="full"
-    disableOverlay
-  >
-    <Actionsheet.Content borderRadius={35}
-    roundedTop={50}>
-      <View px={2} flexDirection="row" justifyContent="space-around">
+const CcActionsheet = ({ isShow, onClose, items, title, children, icon }: ActionsheetProps) => (
+  <Actionsheet isOpen={isShow} onClose={onClose} size="full" disableOverlay>
+    <Actionsheet.Content borderRadius={35} roundedTop={50}>
+      <View px={2} flexDirection="row" justifyContent="space-around" alignItems="flex-end">
         {title ? (
-          <Box w="100%" h={60} px={4} justifyContent="center">
+          <Box w="100%" h={60} px={4} flexDirection="row">
+            {icon}
             <Text
-              fontSize="16"
-              color="gray.500"
+              fontSize={18}
+              fontWeight="semibold"
+              marginBottom={19}
+              color={colors.primary}
               _dark={{
                 color: 'gray.300',
               }}
@@ -42,11 +42,13 @@ const CcActionsheet = ({ isShow, onClose, items, title }: CcActionsheetProps) =>
         <Button onPress={() => onClose()} startIcon={<BackArrowIcon />} colorScheme="transparent" />
       </View>
 
-      {items.map((item) => (
+      {items?.map((item) => (
         <Actionsheet.Item key={item.text} startIcon={item.icon} onPress={item.onPress}>
           {item.text}
         </Actionsheet.Item>
       ))}
+
+      {children ?? children}
     </Actionsheet.Content>
   </Actionsheet>
 )

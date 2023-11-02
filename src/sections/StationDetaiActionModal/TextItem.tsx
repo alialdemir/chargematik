@@ -1,6 +1,7 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { View, Text, Image, useColorModeValue } from 'native-base'
 
-import { useThemeColor } from '../../components/Themed'
+import { colors } from '../../constants/Colors'
 
 export type TextItemType = {
   label: string
@@ -9,46 +10,45 @@ export type TextItemType = {
   isShowImage?: boolean
 }
 
-const TextItem = ({ label, description, isShowImage = false, descriptionColor }: TextItemType) => {
-  const colors = useThemeColor()
-
-  return (
-    <View style={styles.container}>
-      <Text
+const TextItem = ({ label, description, isShowImage = false, descriptionColor }: TextItemType) => (
+  <View style={styles.container}>
+    <Text
+      style={{
+        color: useColorModeValue(colors.primary, colors.write),
+        fontSize: 12,
+        fontWeight: '500',
+        alignSelf: 'baseline',
+        width: 80,
+        textAlign: 'right',
+      }}
+    >
+      {label} :{'   '}
+    </Text>
+    <Text
+      style={{
+        color: useColorModeValue(
+          descriptionColor ?? colors.black,
+          descriptionColor ?? colors.textColor
+        ),
+        fontSize: 12,
+        fontWeight: '500',
+      }}
+    >
+      {description}
+    </Text>
+    {isShowImage ? (
+      <Image
+        // eslint-disable-next-line global-require
+        source={require('../../assets/images/plug-points.png')}
         style={{
-          color: colors.stationDetailLabelText,
-          fontSize: 12,
-          fontWeight: '500',
-          alignSelf: 'baseline',
-          width: 80,
-          textAlign: 'right',
+          width: 138,
+          height: 165,
+          marginTop: -70,
         }}
-      >
-        {label} :{'   '}
-      </Text>
-      <Text
-        style={{
-          color: descriptionColor ?? colors.stationDetailDescriptionText,
-          fontSize: 12,
-          fontWeight: '500',
-        }}
-      >
-        {description}
-      </Text>
-      {isShowImage ? (
-        <Image
-          // eslint-disable-next-line global-require
-          source={require('../../assets/images/plug-points.png')}
-          style={{
-            width: 138,
-            height: 165,
-            marginTop: -70,
-          }}
-        />
-      ) : null}
-    </View>
-  )
-}
+      />
+    ) : null}
+  </View>
+)
 
 const styles = StyleSheet.create({
   container: {

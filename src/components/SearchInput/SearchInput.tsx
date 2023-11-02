@@ -1,69 +1,42 @@
 import { useState } from 'react'
-import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import { Input, Stack } from 'native-base'
+import { TouchableOpacity } from 'react-native'
 
-import { useThemeColor } from '../Themed'
 import SearchIcon from '../../assets/icons/SearchIcon'
 
 const SearchInput = () => {
-  const colors = useThemeColor()
-
   const [searchText, setSearchText] = useState('')
   const handleSearch = () => {
     alert(`Searching for: ${searchText}`)
   }
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        placeholder="Search Station..."
-        style={styles.input}
+    <Stack borderRadius={10} backgroundColor="#fff" space={4} w="100%" alignItems="center">
+      <Input
+        width={262}
+        borderWidth={0}
+        height="32px"
         value={searchText}
         onChangeText={(text) => setSearchText(text)}
         onSubmitEditing={handleSearch}
-        placeholderTextColor={colors.placeholderText}
+        InputRightElement={
+          <Stack
+            backgroundColor="#0CE8A6"
+            width={16}
+            height="32px"
+            justifyContent="center"
+            alignItems="center"
+            style={{ borderTopRightRadius: 10, borderBottomRightRadius: 10 }}
+          >
+            <TouchableOpacity onPress={handleSearch}>
+              <SearchIcon />
+            </TouchableOpacity>
+          </Stack>
+        }
+        placeholder="Search Station..."
       />
-      <TouchableOpacity
-        onPress={handleSearch}
-        style={{
-          backgroundColor: colors.searchInputBackground,
-          ...styles.searchButton,
-        }}
-      >
-        <SearchIcon />
-      </TouchableOpacity>
-    </View>
+    </Stack>
   )
 }
-
-const borderRadius = 10
-const styles = StyleSheet.create({
-  inputContainer: {
-    height: 32,
-    borderRadius,
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-  },
-  input: {
-    color: '#0C2964',
-    fontSize: 14,
-    width: 262,
-
-    paddingLeft: 16,
-    paddingRight: 16,
-    paddingBottom: 10,
-    paddingTop: 10,
-  },
-
-  searchButton: {
-    height: 32,
-    width: 52,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-  },
-})
 
 export default SearchInput
