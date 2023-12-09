@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from 'react-native'
 
 const TabWalletScreen = () => (
   <View style={styles.container}>
-    <Text style={styles.title}>wallet</Text>
+    <Text>Wallet</Text>
   </View>
 )
 

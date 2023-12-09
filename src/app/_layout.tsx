@@ -4,6 +4,8 @@ import { Stack, SplashScreen } from 'expo-router'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { extendTheme, NativeBaseProvider } from 'native-base'
 
+import Modal from './modal'
+
 export { ErrorBoundary } from 'expo-router'
 
 export const unstable_settings = {
@@ -54,8 +56,8 @@ function RootLayoutNav() {
   return (
     <NativeBaseProvider>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </NativeBaseProvider>
   )
